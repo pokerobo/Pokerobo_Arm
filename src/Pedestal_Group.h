@@ -1,6 +1,7 @@
 #ifndef __PEDESTAL_GROUP_H__
 #define __PEDESTAL_GROUP_H__
 
+#include "Pedestal_Commons.h"
 #include "Pedestal_Handler.h"
 
 #define PEDESTALS_MAX                 8
@@ -12,6 +13,14 @@
 
 class PedestalGroup {
   public:
+    PedestalGroup(PedestalHandler* p1,
+        PedestalHandler* p2=NULL,
+        PedestalHandler* p3=NULL,
+        PedestalHandler* p4=NULL,
+        PedestalHandler* p5=NULL,
+        PedestalHandler* p6=NULL,
+        PedestalHandler* p7=NULL,
+        PedestalHandler* p8=NULL);
     PedestalGroup(PedestalHandler* pedestalHandlers[]);
     void begin();
     void reset();
@@ -27,6 +36,7 @@ class PedestalGroup {
   private:
     uint8_t _pedestalsTotal = 0;
     PedestalHandler* _pedestalHandlers[PEDESTALS_MAX] = {};
+    void initialize_();
     void verticalServoUpFor(PedestalHandler *pedestalHandler);
     void horizontalServoRightFor(PedestalHandler *pedestalHandler);
     void verticalServoDownFor(PedestalHandler *pedestalHandler);

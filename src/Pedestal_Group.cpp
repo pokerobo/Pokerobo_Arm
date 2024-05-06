@@ -1,5 +1,48 @@
 #include "Pedestal_Group.h"
 
+PedestalGroup::PedestalGroup(PedestalHandler* p1,
+    PedestalHandler* p2,
+    PedestalHandler* p3,
+    PedestalHandler* p4,
+    PedestalHandler* p5,
+    PedestalHandler* p6,
+    PedestalHandler* p7,
+    PedestalHandler* p8) {
+  if (p1 != NULL) {
+    _pedestalHandlers[_pedestalsTotal] = p1;
+    _pedestalsTotal += 1;
+  }
+  if (p2 != NULL) {
+    _pedestalHandlers[_pedestalsTotal] = p2;
+    _pedestalsTotal += 1;
+  }
+  if (p3 != NULL) {
+    _pedestalHandlers[_pedestalsTotal] = p3;
+    _pedestalsTotal += 1;
+  }
+  if (p4 != NULL) {
+    _pedestalHandlers[_pedestalsTotal] = p4;
+    _pedestalsTotal += 1;
+  }
+  if (p5 != NULL) {
+    _pedestalHandlers[_pedestalsTotal] = p5;
+    _pedestalsTotal += 1;
+  }
+  if (p6 != NULL) {
+    _pedestalHandlers[_pedestalsTotal] = p6;
+    _pedestalsTotal += 1;
+  }
+  if (p7 != NULL) {
+    _pedestalHandlers[_pedestalsTotal] = p7;
+    _pedestalsTotal += 1;
+  }
+  if (p8 != NULL) {
+    _pedestalHandlers[_pedestalsTotal] = p8;
+    _pedestalsTotal += 1;
+  }
+  initialize_();
+}
+
 PedestalGroup::PedestalGroup(PedestalHandler* pedestalHandlers[]) {
   for (int i=0; i<PEDESTALS_MAX; i++) {
     if (pedestalHandlers[i] != NULL) {
@@ -7,7 +50,10 @@ PedestalGroup::PedestalGroup(PedestalHandler* pedestalHandlers[]) {
       _pedestalsTotal += 1;
     }
   }
+  initialize_();
+}
 
+void PedestalGroup::initialize_() {
 #if __PEDESTAL_LOADING_LOG__
   char _pedestalsTotal_[7];
   debugLog("PedestalGroup", "()", " - ", "total", ": ", itoa(_pedestalsTotal, _pedestalsTotal_, 10));

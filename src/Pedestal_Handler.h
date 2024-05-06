@@ -1,7 +1,7 @@
 #ifndef __PEDESTAL_HANDLER_H__
 #define __PEDESTAL_HANDLER_H__
 
-#include "Commons.h"
+#include "Pedestal_Commons.h"
 
 #ifndef __PEDESTAL_LOADING_LOG__
 #define __PEDESTAL_LOADING_LOG__  __LOADING_LOG_ENABLED__
