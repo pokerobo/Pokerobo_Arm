@@ -22,6 +22,7 @@ class PedestalGroup {
         PedestalHandler* p7=NULL,
         PedestalHandler* p8=NULL);
     PedestalGroup(PedestalHandler* pedestalHandlers[]);
+    void set(PedestalDebugLogger* logger);
     void begin();
     void reset();
     void verticalServoUp();
@@ -33,6 +34,8 @@ class PedestalGroup {
     void setHorizontalPosition(int hPos);
     void setVerticalPosition(int vPos);
     void autoDance();
+  protected:
+    virtual bool isDebugEnabled();
   private:
     uint8_t _pedestalsTotal = 0;
     PedestalHandler* _pedestalHandlers[PEDESTALS_MAX] = {};
@@ -52,6 +55,7 @@ class PedestalGroup {
     int8_t _sceneVPos[PEDESTAL_DANCING_STEPS_MAX] = {
       30, 35, 40, 45, 50, 45, 40, 35, 30, 30, 30, 35, 40, 45,  50,  45,  40,  33,  30
     };
+    PedestalDebugLogger* _logger = NULL;
 };
 
 #endif

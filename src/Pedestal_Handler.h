@@ -55,6 +55,8 @@ class PedestalHandler {
     static bool initialized;
 
     PedestalHandler(byte hPin=HORIZONTAL_SERVO_PIN, byte vPin=VERTICAL_SERVO_PIN, bool debugEnabled=true);
+    PedestalHandler* set(PedestalDebugLogger* logger);
+
     void begin(int hMinAngle=0, int hMaxAngle=180, int vMinAngle=0, int vMaxAngle=180);
     void reset();
     void test();
@@ -75,6 +77,9 @@ class PedestalHandler {
     int updateVerticalPosition(int vPos, int vCurrentPos = -1);
     bool syncWith(PedestalHandler master);
 
+  protected:
+    virtual bool isDebugEnabled();
+
   private:
     int count;
 #if !__HCPCA9685_ENABLED__
@@ -91,7 +96,8 @@ class PedestalHandler {
     int verticalServoPos;
     int verticalMinAngle;
     int verticalMaxAngle;
-    bool debugEnabled;
+    bool _debugEnabled;
+    PedestalDebugLogger* _logger = NULL;
 };
 
 #endif

@@ -55,12 +55,22 @@ PedestalGroup::PedestalGroup(PedestalHandler* pedestalHandlers[]) {
 
 void PedestalGroup::initialize_() {
 #if __PEDESTAL_LOADING_LOG__
-  char _pedestalsTotal_[7];
-  debugLog("PedestalGroup", "()", " - ", "total", ": ", itoa(_pedestalsTotal, _pedestalsTotal_, 10));
-
+  if (isDebugEnabled()) {
+    char _pedestalsTotal_[7];
+    _logger->debugLog("PedestalGroup", "()", " - ", "total", ": ", itoa(_pedestalsTotal, _pedestalsTotal_, 10));
+  }
 #endif
   _sceneDirection = true;
   _sceneStep = -1;
+}
+
+void PedestalGroup::set(PedestalDebugLogger* logger) {
+  _logger = logger;
+  // return this;
+}
+
+bool PedestalGroup::isDebugEnabled() {
+  return _logger != NULL;
 }
 
 void PedestalGroup::begin() {
@@ -108,9 +118,11 @@ void PedestalGroup::verticalServoUp() {
   for (int i=0; i<_pedestalsTotal; i++) {
     verticalServoUpFor(_pedestalHandlers[i]);
   }
-#if __PEDESTAL_RUNNING_LOG__
-  debugLog("main", "()", " - ", "UP", " is pushed");
-#endif
+  #if __PEDESTAL_RUNNING_LOG__
+  if (isDebugEnabled()) {
+    _logger->debugLog("main", "()", " - ", "UP", " is pushed");
+  }
+  #endif
 }
 
 void PedestalGroup::verticalServoUpFor(PedestalHandler *pedestalHandler) {
@@ -122,9 +134,11 @@ void PedestalGroup::horizontalServoRight() {
   for (int i=0; i<_pedestalsTotal; i++) {
     horizontalServoRightFor(_pedestalHandlers[i]);
   }
-#if __PEDESTAL_RUNNING_LOG__
-  debugLog("main", "()", " - ", "RIGHT", " is pushed");
-#endif
+  #if __PEDESTAL_RUNNING_LOG__
+  if (isDebugEnabled()) {
+    _logger->debugLog("main", "()", " - ", "RIGHT", " is pushed");
+  }
+  #endif
 }
 
 void PedestalGroup::horizontalServoRightFor(PedestalHandler *pedestalHandler) {
@@ -136,9 +150,11 @@ void PedestalGroup::verticalServoDown() {
   for (int i=0; i<_pedestalsTotal; i++) {
     verticalServoDownFor(_pedestalHandlers[i]);
   }
-#if __PEDESTAL_RUNNING_LOG__
-  debugLog("main", "()", " - ", "DOWN", " is pushed");
-#endif
+  #if __PEDESTAL_RUNNING_LOG__
+  if (isDebugEnabled()) {
+    _logger->debugLog("main", "()", " - ", "DOWN", " is pushed");
+  }
+  #endif
 }
 
 void PedestalGroup::verticalServoDownFor(PedestalHandler *pedestalHandler) {
@@ -150,9 +166,11 @@ void PedestalGroup::horizontalServoLeft() {
   for (int i=0; i<_pedestalsTotal; i++) {
     horizontalServoLeftFor(_pedestalHandlers[i]);
   }
-#if __PEDESTAL_RUNNING_LOG__
-  debugLog("main", "()", " - ", "LEFT", " is pushed");
-#endif
+  #if __PEDESTAL_RUNNING_LOG__
+  if (isDebugEnabled()) {
+    _logger->debugLog("main", "()", " - ", "LEFT", " is pushed");
+  }
+  #endif
 }
 
 void PedestalGroup::horizontalServoLeftFor(PedestalHandler *pedestalHandler) {
@@ -170,9 +188,11 @@ void PedestalGroup::changeByJoystickFor(PedestalHandler *pedestalHandler, int nJ
   if (pedestalHandler == NULL) return;
   bool changed = pedestalHandler->change(nJoyX, nJoyY);
   if (changed) {
-#if __PEDESTAL_RUNNING_LOG__
-    debugLog("main", "()", " - ", "process", "Left", "JoystickChange", "Event", "()", " is called");
-#endif
+    #if __PEDESTAL_RUNNING_LOG__
+    if (isDebugEnabled()) {
+      _logger->debugLog("main", "()", " - ", "process", "Left", "JoystickChange", "Event", "()", " is called");
+    }
+    #endif
   }
 }
 
@@ -181,9 +201,11 @@ void PedestalGroup::autoDance() {
   if (_sceneStep < 0) {
     _sceneStep = 0;
     reset();
-#if __PEDESTAL_RUNNING_LOG__
-    debugLog("PedestalGroup", "::", "autoDance", "()", " - ", "Starting");
-#endif
+    #if __PEDESTAL_RUNNING_LOG__
+    if (isDebugEnabled()) {
+      _logger->debugLog("PedestalGroup", "::", "autoDance", "()", " - ", "Starting");
+    }
+    #endif
     return;
   }
   // check the waitingCount reach the limit
@@ -202,10 +224,12 @@ void PedestalGroup::autoDance() {
   } else {
     _sceneStep -= 1;
   }
-#if __PEDESTAL_RUNNING_LOG__
-  char _step_[7];
-  debugLog("PedestalGroup", "::", "autoDance", "()", " - ", "step", ": ", itoa(_sceneStep, _step_, 10));
-#endif
+  #if __PEDESTAL_RUNNING_LOG__
+  if (isDebugEnabled()) {
+    char _step_[7];
+    _logger->debugLog("PedestalGroup", "::", "autoDance", "()", " - ", "step", ": ", itoa(_sceneStep, _step_, 10));
+  }
+  #endif
   setHorizontalPosition(_sceneHPos[_sceneStep]);
   setVerticalPosition(_sceneVPos[_sceneStep]);
 }

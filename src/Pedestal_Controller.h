@@ -6,11 +6,13 @@
 class PedestalController {
   public:
     PedestalController(PedestalGroup* pedestalGroup);
+    PedestalController* set(PedestalDebugLogger* logger);
     void begin();
     void play(uint16_t toggleFlags, uint16_t joystickX, uint16_t joystickY);
   protected:
     virtual uint16_t processButtonPress(uint16_t buttons);
     virtual int processJoystickChange(int joystickX, int joystickY, char label);
+    virtual bool isDebugEnabled();
   private:
     void processStartButtonPressedEvent();
     void processSelectButtonPressedEvent();
@@ -24,6 +26,7 @@ class PedestalController {
     bool checkButtonPress(uint16_t pressed, uint16_t mask);
     bool isJoystickInDeadzone(int nJoyX, int nJoyY);
     PedestalGroup* _pedestalGroup = NULL;
+    PedestalDebugLogger* _logger = NULL;
 };
 
 #endif

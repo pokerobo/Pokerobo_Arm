@@ -41,6 +41,15 @@ PedestalController::PedestalController(PedestalGroup* pedestalGroup) {
   _pedestalGroup = pedestalGroup;
 }
 
+PedestalController* PedestalController::set(PedestalDebugLogger* logger) {
+  _logger = logger;
+  return this;
+}
+
+bool PedestalController::isDebugEnabled() {
+  return _logger != NULL;
+}
+
 void PedestalController::begin() {}
 
 void PedestalController::play(uint16_t toggleFlags, uint16_t joystickX, uint16_t joystickY) {
@@ -63,8 +72,8 @@ uint16_t PedestalController::processButtonPress(uint16_t pressed) {
 
   if(checkButtonPress(pressed, MASK_START_BUTTON)) {
     #if __DISPATCHER_RUNNING_LOG__
-    if (_debugEnabled) {
-      debugLog("JOY", "_", "START", " is pushed");
+    if (isDebugEnabled()) {
+      _logger->debugLog("JOY", "_", "START", " is pushed");
     }
     #endif
     processStartButtonPressedEvent();
@@ -73,8 +82,8 @@ uint16_t PedestalController::processButtonPress(uint16_t pressed) {
 
   if(checkButtonPress(pressed, MASK_SELECT_BUTTON)) {
     #if __DISPATCHER_RUNNING_LOG__
-    if (_debugEnabled) {
-      debugLog("JOY", "_", "SELECT", " is pushed");
+    if (isDebugEnabled()) {
+      _logger->debugLog("JOY", "_", "SELECT", " is pushed");
     }
     #endif
     processSelectButtonPressedEvent();
@@ -83,8 +92,8 @@ uint16_t PedestalController::processButtonPress(uint16_t pressed) {
 
   if(checkButtonPress(pressed, MASK_ANALOG_BUTTON)) {
     #if __DISPATCHER_RUNNING_LOG__
-    if (_debugEnabled) {
-      debugLog("JOY", "_", "ANALOG", " is pushed");
+    if (isDebugEnabled()) {
+      _logger->debugLog("JOY", "_", "ANALOG", " is pushed");
     }
     #endif
     processAnalogButtonPressedEvent();
@@ -93,8 +102,8 @@ uint16_t PedestalController::processButtonPress(uint16_t pressed) {
 
   if(checkButtonPress(pressed, MASK_UP_BUTTON)) {
     #if __DISPATCHER_RUNNING_LOG__
-    if (_debugEnabled) {
-      debugLog("JOY", "_", "PAD", "_", "UP", " is pushed");
+    if (isDebugEnabled()) {
+      _logger->debugLog("JOY", "_", "PAD", "_", "UP", " is pushed");
     }
     #endif
     processDPadUpButtonPressedEvent();
@@ -103,8 +112,8 @@ uint16_t PedestalController::processButtonPress(uint16_t pressed) {
 
   if(checkButtonPress(pressed, MASK_RIGHT_BUTTON)) {
     #if __DISPATCHER_RUNNING_LOG__
-    if (_debugEnabled) {
-      debugLog("JOY", "_", "PAD", "_", "RIGHT", " is pushed");
+    if (isDebugEnabled()) {
+      _logger->debugLog("JOY", "_", "PAD", "_", "RIGHT", " is pushed");
     }
     #endif
     processDPadRightButtonPressedEvent();
@@ -113,8 +122,8 @@ uint16_t PedestalController::processButtonPress(uint16_t pressed) {
 
   if(checkButtonPress(pressed, MASK_DOWN_BUTTON)) {
     #if __DISPATCHER_RUNNING_LOG__
-    if (_debugEnabled) {
-      debugLog("JOY", "_", "PAD", "_", "DOWN", " is pushed");
+    if (isDebugEnabled()) {
+      _logger->debugLog("JOY", "_", "PAD", "_", "DOWN", " is pushed");
     }
     #endif
     processDPadDownButtonPressedEvent();
@@ -123,8 +132,8 @@ uint16_t PedestalController::processButtonPress(uint16_t pressed) {
 
   if(checkButtonPress(pressed, MASK_LEFT_BUTTON)) {
     #if __DISPATCHER_RUNNING_LOG__
-    if (_debugEnabled) {
-      debugLog("JOY", "_", "PAD", "_", "LEFT", " is pushed");
+    if (isDebugEnabled()) {
+      _logger->debugLog("JOY", "_", "PAD", "_", "LEFT", " is pushed");
     }
     #endif
     processDPadLeftButtonPressedEvent();
@@ -139,12 +148,12 @@ int PedestalController::processJoystickChange(int nJoyX, int nJoyY, char label) 
   nJoyY = map(nJoyY, 0, 1024, -RF24_JOYSTICK_RANGE_Y, RF24_JOYSTICK_RANGE_Y);
 
   #if __DISPATCHER_RUNNING_LOG__
-  if (_debugEnabled) {
+  if (isDebugEnabled()) {
     char l_[2] = { 'L', '\0' };
-    debugLog("Event", "Trigger", "::", "process", "JoystickChange", "()", " - ", l_, ": ");
+    _logger->debugLog("Event", "Trigger", "::", "process", "JoystickChange", "()", " - ", l_, ": ");
     char x_[7], y_[7];
-    debugLog(" - ", "X", ": ", itoa(nJoyX, x_, 10));
-    debugLog(" - ", "Y", ": ", itoa(nJoyY, y_, 10));
+    _logger->debugLog(" - ", "X", ": ", itoa(nJoyX, x_, 10));
+    _logger->debugLog(" - ", "Y", ": ", itoa(nJoyY, y_, 10));
   }
   #endif
 
@@ -163,9 +172,9 @@ int PedestalController::processJoystickChange(int nJoyX, int nJoyY, char label) 
   }
 
   #if __DISPATCHER_RUNNING_LOG__
-  if (_debugEnabled) {
+  if (isDebugEnabled()) {
     char l_[2] = { 'L', '\0' };
-    debugLog("Event", "Trigger", "::", "process", "JoystickChange", "()", " - ", l_, ": ", "not registered");
+    _logger->debugLog("Event", "Trigger", "::", "process", "JoystickChange", "()", " - ", l_, ": ", "not registered");
   }
   #endif
 
