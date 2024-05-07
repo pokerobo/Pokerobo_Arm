@@ -1,13 +1,13 @@
 #include "Pedestal_Controller.h"
 
-#define PEDESTAL_RANGE_X          10
-#define PEDESTAL_RANGE_Y          10
+#define PEDESTAL_RANGE_X          20
+#define PEDESTAL_RANGE_Y          20
 
-#define RF24_JOYSTICK_RANGE_X     255
-#define RF24_JOYSTICK_RANGE_Y     255
+#define ARM_JOYSTICK_RANGE_X      255
+#define ARM_JOYSTICK_RANGE_Y      255
 
-#define RF24_JOYSTICK_DEADZONE_X  32
-#define RF24_JOYSTICK_DEADZONE_Y  32
+#define ARM_JOYSTICK_DEADZONE_X   32
+#define ARM_JOYSTICK_DEADZONE_Y   32
 
 #ifndef MASK_UP_BUTTON
 #define MASK_UP_BUTTON     1U << 0
@@ -144,8 +144,8 @@ uint16_t PedestalController::processButtonPress(uint16_t pressed) {
 }
 
 int PedestalController::processJoystickChange(int nJoyX, int nJoyY, char label) {
-  nJoyX = map(nJoyX, 0, 1024, -RF24_JOYSTICK_RANGE_X, RF24_JOYSTICK_RANGE_X);
-  nJoyY = map(nJoyY, 0, 1024, -RF24_JOYSTICK_RANGE_Y, RF24_JOYSTICK_RANGE_Y);
+  nJoyX = map(nJoyX, 0, 1024, -ARM_JOYSTICK_RANGE_X, ARM_JOYSTICK_RANGE_X);
+  nJoyY = map(nJoyY, 0, 1024, -ARM_JOYSTICK_RANGE_Y, ARM_JOYSTICK_RANGE_Y);
 
   #if __DISPATCHER_RUNNING_LOG__
   if (isDebugEnabled()) {
@@ -182,8 +182,8 @@ int PedestalController::processJoystickChange(int nJoyX, int nJoyY, char label) 
 }
 
 bool PedestalController::isJoystickInDeadzone(int nJoyX, int nJoyY) {
-  return nJoyX <= RF24_JOYSTICK_DEADZONE_X && nJoyX >= -RF24_JOYSTICK_DEADZONE_X &&
-      nJoyY <= RF24_JOYSTICK_DEADZONE_Y && nJoyY >= -RF24_JOYSTICK_DEADZONE_Y;
+  return nJoyX <= ARM_JOYSTICK_DEADZONE_X && nJoyX >= -ARM_JOYSTICK_DEADZONE_X &&
+      nJoyY <= ARM_JOYSTICK_DEADZONE_Y && nJoyY >= -ARM_JOYSTICK_DEADZONE_Y;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -223,8 +223,8 @@ void PedestalController::processDPadLeftButtonPressedEvent() {
 
 void PedestalController::processLeftJoystickChangeEvent(int nJoyX, int nJoyY) {
   if (_pedestalGroup != NULL) {
-    nJoyX = map(nJoyX, -255, 255, PEDESTAL_RANGE_X, -PEDESTAL_RANGE_X);
-    nJoyY = map(nJoyY, -255, 255, -PEDESTAL_RANGE_Y, PEDESTAL_RANGE_Y);
+    nJoyX = map(nJoyX, -ARM_JOYSTICK_RANGE_X, ARM_JOYSTICK_RANGE_X, PEDESTAL_RANGE_X, -PEDESTAL_RANGE_X);
+    nJoyY = map(nJoyY, -ARM_JOYSTICK_RANGE_Y, ARM_JOYSTICK_RANGE_Y, -PEDESTAL_RANGE_Y, PEDESTAL_RANGE_Y);
     _pedestalGroup->changeByJoystick(nJoyX, nJoyY);
   }
 }

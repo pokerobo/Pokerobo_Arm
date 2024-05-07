@@ -3,7 +3,11 @@
 
 #include <Arduino.h>
 
-#define __HCPCA9685_ENABLED__           1
+#define __SERVO_DRIVER_NATIVE__         1
+#define __SERVO_DRIVER_ADAFRUIT__       2
+#define __SERVO_DRIVER_HCPCA9685__      4
+
+#define __ACTIVE_SERVO_DRIVER__         __SERVO_DRIVER_ADAFRUIT__
 
 #define __LOADING_LOG_ENABLED__         1
 #define __RUNNING_LOG_ENABLED__         1

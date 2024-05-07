@@ -11,14 +11,25 @@
 #define __PEDESTAL_RUNNING_LOG__  __RUNNING_LOG_ENABLED__
 #endif//__PEDESTAL_RUNNING_LOG__
 
-#ifndef __HCPCA9685_ENABLED__
-#define __HCPCA9685_ENABLED__   1
+#ifndef __ACTIVE_SERVO_DRIVER__
+#define __ACTIVE_SERVO_DRIVER__  __SERVO_DRIVER_ADAFRUIT__
 #endif
 
-#if !__HCPCA9685_ENABLED__
+#if __ACTIVE_SERVO_DRIVER__ == __SERVO_DRIVER_NATIVE__
 #include <Servo.h>
-#else
+#endif
+
+#if __ACTIVE_SERVO_DRIVER__ == __SERVO_DRIVER_ADAFRUIT__
+#include <Adafruit_PWMServoDriver.h>
+#endif
+
+#if __ACTIVE_SERVO_DRIVER__ == __SERVO_DRIVER_HCPCA9685__
 #include "HCPCA9685.h"
+#endif
+
+#if __ACTIVE_SERVO_DRIVER__ == __SERVO_DRIVER_ADAFRUIT__
+#define SERVOMIN              125
+#define SERVOMAX              625
 #endif
 
 #ifndef HORIZONTAL_SERVO_PIN
@@ -34,7 +45,7 @@
 #endif
 
 #ifndef HORIZONTAL_MAX_ANGLE
-#define HORIZONTAL_MAX_ANGLE  120
+#define HORIZONTAL_MAX_ANGLE  150
 #endif
 
 #ifndef VERTICAL_MIN_ANGLE
@@ -46,7 +57,7 @@
 #endif
 
 #ifndef MOVING_AMOUNT
-#define MOVING_AMOUNT         5
+#define MOVING_AMOUNT         1
 #endif
 
 class PedestalHandler {
@@ -82,16 +93,16 @@ class PedestalHandler {
 
   private:
     int count;
-#if !__HCPCA9685_ENABLED__
+    #if __ACTIVE_SERVO_DRIVER__ == __SERVO_DRIVER_NATIVE__
     Servo horizontalServo;
-#endif
+    #endif
     byte horizontalServoPin;
     int horizontalServoPos;
     int horizontalMinAngle;
     int horizontalMaxAngle;
-#if !__HCPCA9685_ENABLED__
+    #if __ACTIVE_SERVO_DRIVER__ == __SERVO_DRIVER_NATIVE__
     Servo verticalServo;
-#endif
+    #endif
     byte verticalServoPin;
     int verticalServoPos;
     int verticalMinAngle;

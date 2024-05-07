@@ -31,5 +31,5 @@ void loop() {
   pedestalController.play(action.getPressingFlags(), action.getX(), action.getY());
   displayHandler.render(&action);
 
-  delay(20);
+  delay(10);
 }
