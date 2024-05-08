@@ -29,29 +29,25 @@ class WaitingCounter {
 
 class PedestalDebugLogger {
   public:
-    void debugLog(char* s0);
-    void debugLog(char* s0, char* s1);
-    void debugLog(char* s0, char* s1, char* s2);
-    void debugLog(char* s0, char* s1, char* s2, char* s3);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7, char* s8);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7, char* s8, char* s9);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7, char* s8, char* s9,
-        char* s10);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7, char* s8, char* s9,
-        char* s10, char* s11);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7, char* s8, char* s9,
-        char* s10, char* s11, char* s12, char* s13);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7, char* s8, char* s9,
-        char* s10, char* s11, char* s12, char* s13, char* s14);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7, char* s8, char* s9,
-        char* s10, char* s11, char* s12, char* s13, char* s14, char* s15);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7, char* s8, char* s9,
-        char* s10, char* s11, char* s12, char* s13, char* s14, char* s15, char* s16, char* s17, char* s18);
-    void debugLog(char* s0, char* s1, char* s2, char* s3, char* s4, char* s5, char* s6, char* s7, char* s8, char* s9,
-        char* s10, char* s11, char* s12, char* s13, char* s14, char* s15, char* s16, char* s17, char* s18, char* s19);
+    void debugLog(char* s0,
+        char* s1=NULL,
+        char* s2=NULL,
+        char* s3=NULL,
+        char* s4=NULL,
+        char* s5=NULL,
+        char* s6=NULL,
+        char* s7=NULL,
+        char* s8=NULL,
+        char* s9=NULL,
+        char* s10=NULL,
+        char* s11=NULL,
+        char* s12=NULL,
+        char* s13=NULL,
+        char* s14=NULL,
+        char* s15=NULL,
+        char* s16=NULL,
+        char* s17=NULL,
+        char* s18=NULL,
+        char* s19=NULL);
 };
 #endif//__PEDESTAL_COMMONS_H__
