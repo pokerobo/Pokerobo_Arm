@@ -57,7 +57,7 @@ void PedestalGroup::initialize_() {
 #if __PEDESTAL_LOADING_LOG__
   if (isDebugEnabled()) {
     char _pedestalsTotal_[7];
-    _logger->debugLog("PedestalGroup", "()", " - ", "total", ": ", itoa(_pedestalsTotal, _pedestalsTotal_, 10));
+    _logger->debug("PedestalGroup", "()", " - ", "total", ": ", itoa(_pedestalsTotal, _pedestalsTotal_, 10));
   }
 #endif
   _sceneDirection = true;
@@ -120,7 +120,7 @@ void PedestalGroup::verticalServoUp() {
   }
   #if __PEDESTAL_RUNNING_LOG__
   if (isDebugEnabled()) {
-    _logger->debugLog("main", "()", " - ", "UP", " is pushed");
+    _logger->debug("main", "()", " - ", "UP", " is pushed");
   }
   #endif
 }
@@ -136,7 +136,7 @@ void PedestalGroup::horizontalServoRight() {
   }
   #if __PEDESTAL_RUNNING_LOG__
   if (isDebugEnabled()) {
-    _logger->debugLog("main", "()", " - ", "RIGHT", " is pushed");
+    _logger->debug("main", "()", " - ", "RIGHT", " is pushed");
   }
   #endif
 }
@@ -152,7 +152,7 @@ void PedestalGroup::verticalServoDown() {
   }
   #if __PEDESTAL_RUNNING_LOG__
   if (isDebugEnabled()) {
-    _logger->debugLog("main", "()", " - ", "DOWN", " is pushed");
+    _logger->debug("main", "()", " - ", "DOWN", " is pushed");
   }
   #endif
 }
@@ -168,7 +168,7 @@ void PedestalGroup::horizontalServoLeft() {
   }
   #if __PEDESTAL_RUNNING_LOG__
   if (isDebugEnabled()) {
-    _logger->debugLog("main", "()", " - ", "LEFT", " is pushed");
+    _logger->debug("main", "()", " - ", "LEFT", " is pushed");
   }
   #endif
 }
@@ -190,7 +190,7 @@ void PedestalGroup::changeByJoystickFor(PedestalHandler *pedestalHandler, int nJ
   if (changed) {
     #if __PEDESTAL_RUNNING_LOG__
     if (isDebugEnabled()) {
-      _logger->debugLog("main", "()", " - ", "process", "Left", "JoystickChange", "Event", "()", " is called");
+      _logger->debug("main", "()", " - ", "process", "Left", "JoystickChange", "Event", "()", " is called");
     }
     #endif
   }
@@ -203,7 +203,7 @@ void PedestalGroup::autoDance() {
     reset();
     #if __PEDESTAL_RUNNING_LOG__
     if (isDebugEnabled()) {
-      _logger->debugLog("PedestalGroup", "::", "autoDance", "()", " - ", "Starting");
+      _logger->debug("PedestalGroup", "::", "autoDance", "()", " - ", "Starting");
     }
     #endif
     return;
@@ -227,7 +227,7 @@ void PedestalGroup::autoDance() {
   #if __PEDESTAL_RUNNING_LOG__
   if (isDebugEnabled()) {
     char _step_[7];
-    _logger->debugLog("PedestalGroup", "::", "autoDance", "()", " - ", "step", ": ", itoa(_sceneStep, _step_, 10));
+    _logger->debug("PedestalGroup", "::", "autoDance", "()", " - ", "step", ": ", itoa(_sceneStep, _step_, 10));
   }
   #endif
   setHorizontalPosition(_sceneHPos[_sceneStep]);

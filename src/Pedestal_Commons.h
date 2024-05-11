@@ -29,7 +29,7 @@ class WaitingCounter {
 
 class PedestalDebugLogger {
   public:
-    void debugLog(char* s0,
+    void debug(char* s0,
         char* s1=NULL,
         char* s2=NULL,
         char* s3=NULL,
