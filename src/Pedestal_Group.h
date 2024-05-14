@@ -11,7 +11,16 @@
 #define PEDESTAL_WAITING_MAX          100
 #endif//PEDESTAL_WAITING_MAX
 
-class PedestalGroup {
+class PedestalState {
+  public:
+    virtual int getCommonHorizontalPosition();
+    virtual int getCommonVerticalPosition();
+    virtual int getHorizontalPositionOf(uint8_t i);
+    virtual int getVerticalPositionOf(uint8_t i);
+    virtual uint8_t getTotal();
+};
+
+class PedestalGroup: public PedestalState {
   public:
     PedestalGroup(PedestalHandler* p1,
         PedestalHandler* p2=NULL,
@@ -33,6 +42,11 @@ class PedestalGroup {
     bool change(int hUnits, int vUnits);
     void setHorizontalPosition(int hPos);
     void setVerticalPosition(int vPos);
+    int getCommonHorizontalPosition();
+    int getCommonVerticalPosition();
+    int getHorizontalPositionOf(uint8_t i);
+    int getVerticalPositionOf(uint8_t i);
+    uint8_t getTotal();
     void autoDance();
   protected:
     virtual bool isDebugEnabled();

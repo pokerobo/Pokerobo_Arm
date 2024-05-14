@@ -7,6 +7,7 @@ class PedestalController {
   public:
     PedestalController(PedestalGroup* pedestalGroup);
     PedestalController* set(PedestalDebugLogger* logger);
+    PedestalState* getState();
     void begin();
     void play(uint16_t toggleFlags, uint16_t joystickX, uint16_t joystickY);
   protected:

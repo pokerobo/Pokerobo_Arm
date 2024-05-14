@@ -104,6 +104,32 @@ void PedestalGroup::setVerticalPosition(int vPos) {
   }
 }
 
+int PedestalGroup::getCommonHorizontalPosition() {
+  return getHorizontalPositionOf(0);
+}
+
+int PedestalGroup::getCommonVerticalPosition() {
+  return getVerticalPositionOf(0);
+}
+
+int PedestalGroup::getHorizontalPositionOf(uint8_t i) {
+  if (i >= _pedestalsTotal) {
+    return -1;
+  }
+  return _pedestalHandlers[i]->getHorizontalPosition();
+}
+
+int PedestalGroup::getVerticalPositionOf(uint8_t i) {
+  if (i >= _pedestalsTotal) {
+    return -1;
+  }
+  return _pedestalHandlers[i]->getVerticalPosition();
+}
+
+uint8_t PedestalGroup::getTotal() {
+  return _pedestalsTotal;
+}
+
 void PedestalGroup::reset() {
   for (int i=0; i<_pedestalsTotal; i++) {
     if (_pedestalHandlers[i] == NULL) {

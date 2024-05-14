@@ -61,6 +61,10 @@ void PedestalController::play(uint16_t toggleFlags, uint16_t joystickX, uint16_t
   processJoystickChange(joystickX, joystickY, 'L');
 }
 
+PedestalState* PedestalController::getState() {
+  return _pedestalGroup;
+}
+
 //-------------------------------------------------------------------------------------------------
 
 bool PedestalController::checkButtonPress(uint16_t pressed, uint16_t mask) {
