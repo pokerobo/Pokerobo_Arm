@@ -112,11 +112,39 @@ int PedestalGroup::getCommonVerticalPosition() {
   return getVerticalPositionOf(0);
 }
 
+int PedestalGroup::getHorizontalMinAngleOf(uint8_t i) {
+  if (i >= _pedestalsTotal) {
+    return -1;
+  }
+  return _pedestalHandlers[i]->getHorizontalMinAngle();
+}
+
+int PedestalGroup::getHorizontalMaxAngleOf(uint8_t i) {
+  if (i >= _pedestalsTotal) {
+    return -1;
+  }
+  return _pedestalHandlers[i]->getHorizontalMaxAngle();
+}
+
 int PedestalGroup::getHorizontalPositionOf(uint8_t i) {
   if (i >= _pedestalsTotal) {
     return -1;
   }
   return _pedestalHandlers[i]->getHorizontalPosition();
+}
+
+int PedestalGroup::getVerticalMinAngleOf(uint8_t i) {
+  if (i >= _pedestalsTotal) {
+    return -1;
+  }
+  return _pedestalHandlers[i]->getVerticalMinAngle();
+}
+
+int PedestalGroup::getVerticalMaxAngleOf(uint8_t i) {
+  if (i >= _pedestalsTotal) {
+    return -1;
+  }
+  return _pedestalHandlers[i]->getVerticalMaxAngle();
 }
 
 int PedestalGroup::getVerticalPositionOf(uint8_t i) {

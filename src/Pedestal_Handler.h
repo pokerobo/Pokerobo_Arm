@@ -80,9 +80,13 @@ class PedestalHandler {
     int changeHorizontalServo(int hDelta);
     int changeVerticalServo(int vDelta);
     bool change(int hDelta, int vDelta);
+    int getHorizontalMinAngle();
+    int getHorizontalMaxAngle();
     int getHorizontalPosition();
     void setHorizontalPosition(int hPos);
     int updateHorizontalPosition(int hPos, int hCurrentPos = -1);
+    int getVerticalMinAngle();
+    int getVerticalMaxAngle();
     int getVerticalPosition();
     void setVerticalPosition(int vPos);
     int updateVerticalPosition(int vPos, int vCurrentPos = -1);

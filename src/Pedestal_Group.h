@@ -15,7 +15,11 @@ class PedestalState {
   public:
     virtual int getCommonHorizontalPosition();
     virtual int getCommonVerticalPosition();
+    virtual int getHorizontalMinAngleOf(uint8_t i);
+    virtual int getHorizontalMaxAngleOf(uint8_t i);
     virtual int getHorizontalPositionOf(uint8_t i);
+    virtual int getVerticalMinAngleOf(uint8_t i);
+    virtual int getVerticalMaxAngleOf(uint8_t i);
     virtual int getVerticalPositionOf(uint8_t i);
     virtual uint8_t getTotal();
 };
@@ -44,7 +48,11 @@ class PedestalGroup: public PedestalState {
     void setVerticalPosition(int vPos);
     int getCommonHorizontalPosition();
     int getCommonVerticalPosition();
+    int getHorizontalMinAngleOf(uint8_t i);
+    int getHorizontalMaxAngleOf(uint8_t i);
     int getHorizontalPositionOf(uint8_t i);
+    int getVerticalMinAngleOf(uint8_t i);
+    int getVerticalMaxAngleOf(uint8_t i);
     int getVerticalPositionOf(uint8_t i);
     uint8_t getTotal();
     void autoDance();

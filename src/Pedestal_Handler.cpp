@@ -96,6 +96,14 @@ void PedestalHandler::reset() {
   setVerticalPosition(verticalMinAngle);
 }
 
+int PedestalHandler::getHorizontalMinAngle() {
+  return horizontalMinAngle;
+}
+
+int PedestalHandler::getHorizontalMaxAngle() {
+  return horizontalMaxAngle;
+}
+
 int PedestalHandler::getHorizontalPosition() {
   #if __ACTIVE_SERVO_DRIVER__ == __SERVO_DRIVER_NATIVE__
   return horizontalServo.read();
@@ -148,6 +156,14 @@ int PedestalHandler::updateHorizontalPosition(int hPos, int hCurrentPos) {
   }
   //
   return hPos - hCurrentPos;
+}
+
+int PedestalHandler::getVerticalMinAngle() {
+  return verticalMinAngle;
+}
+
+int PedestalHandler::getVerticalMaxAngle() {
+  return verticalMaxAngle;
 }
 
 int PedestalHandler::getVerticalPosition() {
